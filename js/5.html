@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset=" utf-8"> 
+    <title>荧光屏文字 滚动效果</title> 
+    <style type="text/css">
+      .box{
+        height: 100px;
+        width: 100px;
+        background: red;
+      }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <button id="start">开始</button>
+    <button id="stop">停止</button>
+</body>
+<script type="text/javascript">
+    var box=document.getElementsByClassName("box")[0];
+    var start=document.getElementById("start");
+    var stop=document.getElementById("stop");
+    var intervalId;
+    start.onclick=function(){
+      intervalId=setInterval(function(){
+        var styleObj=getComputedStyle(box);
+        var boxHeight=parseInt(styleObj["height"]);
+        var boxWidth=parseInt(styleObj["width"]);
+        var boxMarginLeft=parseInt(styleObj["marginLeft"]);
+        box.style.height=(boxHeight+1)+"px";
+        box.style.width=(boxWidth+1)+"px";
+        box.style.marginLeft=(boxMarginLeft+1)+"px";
+      },30)
+      
+    }
+    stop.onclick=function(){
+      clearInterval(intervalId);
+    }
+
+</script>
+</html>
